@@ -3,7 +3,7 @@ function canvasGrid(canvas,width,height) {
 	this.w = width
 	this.h = height
 	this.objects = []
-	this.banked = {}
+	this.banked = []
 	for ( i = 0; i < this.w; i++) {
 		this.objects[i] = []
 		for ( a = 0; a < this.h; a++ ) {
@@ -15,7 +15,23 @@ function canvasGrid(canvas,width,height) {
 canvasGrid.prototype.setObject = function(x,y,obj) {
 	this.objects[x][y] = obj
 }
-
+canvasGrid.prototype.bankObject = function() {
+	if (arguments.length==1) {
+		this.banked.push(arguments[0])
+	} else if (arguments.length==2) {
+		this.banked.push(this.objects[arguments[0]][arguments[1]])
+		this.objects[arguments[0]][arguments[1]] = null
+	}
+}
+canvasGrid.prototype.unBankObject = function(obj, nx, ny) {
+	this.objects[nx][ny] = this.banked.splice(this.banked.indexOf(obj),1)
+}
+canvasGrid.prototype.getBankedObject = function(obj) {
+	return this.banked[this.banked.indexOf(obj)]
+}
+canvasGrid.prototype.removeBankedObject = function(obj) {
+	return this.banked.splice(this.banked.indexOf(obj),1)
+}
 canvasGrid.prototype.getObject = function(x,y) {
 	if (x==-1) {
 		return this.banked[y]

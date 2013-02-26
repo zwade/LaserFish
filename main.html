@@ -135,26 +135,41 @@ function theta(obj) {
 	return a
 }
 function lockXY(obj) {
+	var left = 0
+	var top = 0
 	obj.parent.preMove()
 	if (!obj.isMovable) {
 		return
 	}
 	obj.parent.isBanked = false
 	if (GRIDW/2<=obj.getLeft() && obj.getLeft()<WIDTH*GRIDW-GRIDW/2) {
-		obj.setLeft(Math.round(obj.getLeft()/GRIDW)*GRIDW)
+		left = (Math.round(obj.getLeft()/GRIDW)*GRIDW)
 	} else {
 		console.log('banking')
 		obj.parent.isBanked = true
-		obj.setLeft(WIDTH*GRIDW+GRIDW)
-		obj.setTop(GRIDH+20)
+		left = (WIDTH*GRIDW+GRIDW)
+		top = (GRIDH+20)
+		handler.bankObject(obj.parent.ox,obj.parent.oy)
 	}					
 	if (GRIDH/2<=obj.getTop() && obj.getTop()<HEIGHT*GRIDH-GRIDH/2) {
-		obj.setTop(Math.round(obj.getTop()/GRIDH)*GRIDH)
+		top = (Math.round(obj.getTop()/GRIDH)*GRIDH)
 	} else {
 		console.log('banking')
 		obj.parent.isBanked = true
-		obj.setLeft(WIDTH*GRIDW+GRIDW)
-		obj.setTop(GRIDH+20)
+		left = (WIDTH*GRIDW+GRIDW)
+		top =(GRIDH+20)
+		handler.bankObject(obj.parent.ox,obj.parent.oy)
+	}
+	var tmp = obj.parent
+	console.log((left/GRIDW-1)+" : "+(top/GRIDH-1))
+	var l = left/GRIDW-1
+	var r = top/GRIDH-1
+	if (tmp.isBanked || !handler.getObject(l,r) || handler.getObject(l,r)==obj.parent) {
+		obj.setLeft(left)
+		obj.setTop(top)
+	} else {
+		obj.setLeft(GRIDW*tmp.ox+GRIDW)
+		obj.setTop(GRIDH*tmp.oy+GRIDH)
 	}
 	obj.setCoords()
 	obj.parent.updateCoords()
@@ -182,9 +197,13 @@ can.observe('mouse:up',function(e){
 		if (tmp.ox==tmp.nx && tmp.oy==tmp.ny) {
 			tmp.changeAngle()
 		}
-		handler.moveObject(e.target.parent.ox,e.target.parent.oy,e.target.parent.nx,e.target.parent.ny)
+		if (!e.target.parent.isBanked) {
+			handler.moveObject(e.target.parent.ox,e.target.parent.oy,e.target.parent.nx,e.target.parent.ny)
+		}
 	}
-	drawLaser(laserPath(ex.nx,ex.ny,ex.dir))
+	if (!ex.isBanked) {
+		drawLaser(laserPath(ex.nx,ex.ny,ex.dir))
+	}
 	can.renderAll()
 })
 
