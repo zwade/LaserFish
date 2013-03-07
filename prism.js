@@ -1,4 +1,4 @@
-function mirror(x,y,dir) {
+function prism(x,y,dir) {
         this.loaded = null
 	x = x||0
 	y = y||0
@@ -8,11 +8,11 @@ function mirror(x,y,dir) {
 	this.ox = x
 	this.oy = y
 	this.dir = dir
-	this.corners = true
+	this.corners = false
 	this.loaded = false
 	var canvas
 	var self = this
-        fabric.loadSVGFromURL('mirror.svg',function(obj, opt) {
+        fabric.loadSVGFromURL('prism.svg',function(obj, opt) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
 		shape.id = genId()
 		shape.lockScalingX = shape.lockScalingY = true
@@ -29,7 +29,7 @@ function mirror(x,y,dir) {
 		
 	})
 }
-mirror.prototype.updateCoords = function() {
+prism.prototype.updateCoords = function() {
 	if (this.isBanked) {
 		this.nx = -1
 		this.ny = 1
@@ -38,60 +38,59 @@ mirror.prototype.updateCoords = function() {
 		this.ny = (this.fab.getTop()-GRIDH)/GRIDH
 	}
 }
-mirror.prototype.changeAngle = function(a) {
+prism.prototype.changeAngle = function(a) {
 	if (!a) {
-		this.fab.setAngle(this.fab.getAngle()+45)
+		this.fab.setAngle(this.fab.getAngle()+90)
 		while (this.fab.getAngle()>=360) {
 			this.fab.setAngle(this.fab.getAngle()-360)
 		}
-		this.setDir(Math.round(this.fab.getAngle()/45)/2)
+		this.setDir(Math.round(this.fab.getAngle()/90))
 	} else {
 		this.setDir(a)
 		this.fab.setAngle(Math.round(a*90))
 	}
 }
-mirror.prototype.calculateLaser = function(dir) {
-	ret = [0,this.nx,this.ny]
-	rdir = 0
-	a = Math.abs(this.getDir()+dir)
-	while(a>=4) {
-		a-=4
+prism.prototype.calculateLaser = function(dir,color) {
+	ret = ['prism',[this.nx,this.ny,0],[this.nx,this.ny,1],[this.nx,this.ny,2]]
+	a = (this.getDir()-dir)
+	while(a<0) {
+		a+=4
 	}
-	if (a==0 ||  a==2) {
-		rdir=dir+2
-	} 
-	if (a==1 || a==3) {
-		rdir=dir
+	if (a!=2 || ['white','#fff','#FFF','#ffffff','#FFFFFF','rgb(255,255,255)','RGB(255,255,255)'].indexOf(color)==-1 ) {
+		console.log(color)
+		return
 	}
-	if (a==.5 || a==2.5) {
-		rdir=dir-1
-	}
-	if (a==1.5 || a==3.5) {
-		rdir=dir+1
-	}
-	while (rdir>=4) {
-		rdir-=4
-	}
-	ret[0] = rdir
-	console.log(rdir)
+	dir1 = this.dir+1
+	dir2 = this.dir+2
+	dir3 = this.dir+3
+	while (dir1>=4) {dir1-=4} 
+	while (dir2>=4) {dir2-=4} 
+	while (dir3>=4) {dir3-=4} 
+	ret[1][2] = dir1
+	ret[1][3] = 'red'
+	ret[2][2] = dir2
+	ret[2][3] = 'blue'
+	ret[3][2] = dir3
+	ret[3][3] = 'green'	
+	console.log(ret)
 	return ret
 }
-mirror.prototype.preMove = function() {
+prism.prototype.preMove = function() {
 	this.ox = this.nx
 	this.oy = this.ny
 }
-mirror.prototype.getFabric = function() {
+prism.prototype.getFabric = function() {
         return this.fab
 }
-mirror.prototype.getDir = function() {
+prism.prototype.getDir = function() {
 	return this.dir
 }
-mirror.prototype.setDir = function(dir) {
+prism.prototype.setDir = function(dir) {
 	this.dir = dir
 	this.fab.setAngle(dir*90)
 	can.renderAll()
 }
-mirror.prototype.addToCanvas = function() {
+prism.prototype.addToCanvas = function() {
 	if (this.loaded && !inCanvas(this.fab)) {
 		can.add(this.fab)
 	} else {

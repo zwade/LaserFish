@@ -7,6 +7,7 @@
 <script src = fabric.js></script>
 <script src = handler.js></script>
 <script src = emitter.js></script>
+<script src = prism.js></script>
 <script src = mirror.js></script>
 
 <script>
@@ -41,7 +42,7 @@ function laser(path,color) {
 function drawLaser(path) {
 	clearLasers()
 	for (i = 0; i < path.length; i+=2) {
-		activeLaser[activeLaser.length] = laser([path[i][0]*GRIDW+GRIDW,path[i][1]*GRIDH+GRIDH,path[i+1][0]*GRIDW+GRIDW,path[i+1][1]*GRIDH+GRIDH])
+		activeLaser[activeLaser.length] = laser([path[i][0]*GRIDW+GRIDW,path[i][1]*GRIDH+GRIDH,path[i+1][0]*GRIDW+GRIDW,path[i+1][1]*GRIDH+GRIDH],path[i][2])
 	}
 	renderLasers()
 }
@@ -59,8 +60,9 @@ function clearLasers() {
 	}
 	activeLaser =[]
 }
-function laserPath(x,y,dir) {
-	var ret = [[x,y]]
+function laserPath(x,y,dir,color) {
+	if (!arguments[3]) { color = 'white' }
+	var ret = [[x,y,color]]
 	while (dir>=4) {
 		dir-=4
 	}
@@ -78,14 +80,25 @@ function laserPath(x,y,dir) {
 	}
 	while(x>=0 && y>=0 && x< WIDTH && y < HEIGHT) {
 		if (handler.getObject(x,y)) {
-			ret[ret.length] = [x,y]
-			tmp  = handler.getObject(x,y).calculateLaser(dir)
-			if (tmp) {
+			ret[ret.length] = [x,y,color]
+			var tmp  = handler.getObject(x,y).calculateLaser(dir,color)
+			if (tmp && tmp.length==4) {								
+				console.log('prisming')
+				var a = (laserPath(tmp[1][0],tmp[1][1],tmp[1][2],tmp[1][3]))
+				console.log("a: ",ret.concat(a))
+			        var b = (laserPath(tmp[2][0],tmp[2][1],tmp[2][2],tmp[2][3]))
+				console.log("b1:",b)
+				console.log("b: ",ret.concat(a).concat(b))
+				var c = (laserPath(tmp[3][0],tmp[3][1],tmp[3][2],tmp[3][3]))
+				console.log("c: ",ret.concat(a).concat(b).concat(c))
+				var d = ret.concat(a).concat(b).concat(c)
+				console.log(d)
+				return d
+			} else if (tmp) {
 				dir = tmp[0]
-				ret[ret.length] = [x,y]
+				ret[ret.length] = [x,y,color]
 				x = tmp[1]
 				y = tmp[2]
-				ret[ret.lenght] = [x,y]
 			} else {
 				return ret
 			}
@@ -107,7 +120,7 @@ function laserPath(x,y,dir) {
 		}
 
 	}
-	ret[ret.length] = [x,y]
+	ret[ret.length] = [x,y,color]
 	return ret
 }
 function inCanvas(obj) {
@@ -123,6 +136,7 @@ function drawLevel(level,cb) {
 	//can.setBackgroundImage('background.jpg',function() {
 	//})
 	handler = new canvasGrid(can,WIDTH,HEIGHT)
+	can.add(laser([GRIDW*WIDTH-GRIDW/2,0,GRIDW*WIDTH-GRIDW/2,GRIDH*HEIGHT],'black'))
 	can.renderAll()
 	cb()
 }	
@@ -145,23 +159,24 @@ function lockXY(obj) {
 	if (GRIDW/2<=obj.getLeft() && obj.getLeft()<WIDTH*GRIDW-GRIDW/2) {
 		left = (Math.round(obj.getLeft()/GRIDW)*GRIDW)
 	} else {
-		console.log('banking')
 		obj.parent.isBanked = true
-		left = (WIDTH*GRIDW+GRIDW)
-		top = (GRIDH+20)
-		handler.bankObject(obj.parent.ox,obj.parent.oy)
+		console.log('banking')
+		if (!handler.getBankedObject(obj.parent)) {
+			handler.bankObject(obj.parent.ox,obj.parent.oy)
+		}
+		return
 	}					
 	if (GRIDH/2<=obj.getTop() && obj.getTop()<HEIGHT*GRIDH-GRIDH/2) {
 		top = (Math.round(obj.getTop()/GRIDH)*GRIDH)
 	} else {
-		console.log('banking')
 		obj.parent.isBanked = true
-		left = (WIDTH*GRIDW+GRIDW)
-		top =(GRIDH+20)
-		handler.bankObject(obj.parent.ox,obj.parent.oy)
+		console.log('banking')
+		if (!handler.getBankedObject(obj.parent)) {
+			handler.bankObject(obj.parent.ox,obj.parent.oy)
+		}
+		return
 	}
 	var tmp = obj.parent
-	console.log((left/GRIDW-1)+" : "+(top/GRIDH-1))
 	var l = left/GRIDW-1
 	var r = top/GRIDH-1
 	if (tmp.isBanked || !handler.getObject(l,r) || handler.getObject(l,r)==obj.parent) {
@@ -191,6 +206,7 @@ can.observe('mouse:down', function(e) {
 	clearLasers()
 })
 can.observe('mouse:up',function(e){
+	
 	if (e.target && e.target.isMovable) {
 		tmp = e.target.parent
 		lockXY(e.target)
@@ -199,6 +215,8 @@ can.observe('mouse:up',function(e){
 		}
 		if (!e.target.parent.isBanked) {
 			handler.moveObject(e.target.parent.ox,e.target.parent.oy,e.target.parent.nx,e.target.parent.ny)
+		} else {
+			1==1
 		}
 	}
 	if (!ex.isBanked) {
@@ -219,6 +237,8 @@ function drawTest() {
 	handler.setObject(1,2,why)
 	y2 = new mirror(1,3,1)
 	handler.setObject(1,3,y2)
+	y = new prism(1,4,3,2)
+	handler.setObject(1,4,y)
 }
 
 function start() { 

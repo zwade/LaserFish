@@ -1,0 +1,10 @@
+{
+	"name":"pizza",
+	"good":true,
+	"pizza":"wat",
+	"yummy":[
+		'pizza',
+		'lolipops',
+		false
+	]
+}

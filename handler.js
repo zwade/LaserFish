@@ -17,10 +17,23 @@ canvasGrid.prototype.setObject = function(x,y,obj) {
 }
 canvasGrid.prototype.bankObject = function() {
 	if (arguments.length==1) {
-		this.banked.push(arguments[0])
+		obj = arguments[0]
+		this.banked.push(obj)
+		this.banked[this.banked.indexOf(obj)].ny = this.banked.indexOf(obj)
+		this.banked[this.banked.indexOf(obj)].nx = -1
 	} else if (arguments.length==2) {
-		this.banked.push(this.objects[arguments[0]][arguments[1]])
-		this.objects[arguments[0]][arguments[1]] = null
+		var x = arguments[0]
+		var y = arguments[1]
+		this.banked.push(this.objects[x][y])
+		var obj = this.objects[x][y]
+		this.banked[this.banked.indexOf(obj)].ny = this.banked.indexOf(obj)
+		this.banked[this.banked.indexOf(obj)].nx = -1
+		this.objects[x][y] = null
+	}
+}
+canvasGrid.prototype.lockBank = function() {
+	for (i in this.banked) {
+		this.banked[i]
 	}
 }
 canvasGrid.prototype.unBankObject = function(obj, nx, ny) {
@@ -57,8 +70,7 @@ canvasGrid.prototype.moveObject = function(ox,oy,nx,ny) {
 		return
 	}
 	if (ox==-1) {
-		this.objects[nx][ny] = this.banked[oy]
-		this.banked[oy] = null		
+		this.objects[nx][ny] = this.banked.splice(oy,1)[0]
 		return
 	}
 	this.objects[nx][ny] = this.objects[ox][oy]

@@ -2,6 +2,6 @@
  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
  <g>
   <title>Layer 1</title>
-  <rect id="svg_2" height="35" width="10" y="2.5" x="22.5" stroke-width="3" stroke="#000000" fill="#cccccc"/>
+  <path id="svg_2" d="m3,5l0,30l30,-15l-30,-15z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="3" stroke="#000000" fill="#00BBFF"/>
  </g>
 </svg>
