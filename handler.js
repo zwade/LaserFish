@@ -30,20 +30,27 @@ canvasGrid.prototype.bankObject = function() {
 		this.banked[this.banked.indexOf(obj)].nx = -1
 		this.objects[x][y] = null
 	}
+	this.lockBank()
 }
 canvasGrid.prototype.lockBank = function() {
+	console.log('iscalled')
 	for (i in this.banked) {
-		this.banked[i]
+		this.banked[i].fab.setLeft(GRIDW*WIDTH+GRIDW/2)
+		this.banked[i].fab.setTop(GRIDH*i+GRIDH)
+		this.banked[i].fab.setCoords()
 	}
+	can.renderAll()
 }
 canvasGrid.prototype.unBankObject = function(obj, nx, ny) {
 	this.objects[nx][ny] = this.banked.splice(this.banked.indexOf(obj),1)
+	this.lockBank()
 }
 canvasGrid.prototype.getBankedObject = function(obj) {
 	return this.banked[this.banked.indexOf(obj)]
 }
 canvasGrid.prototype.removeBankedObject = function(obj) {
 	return this.banked.splice(this.banked.indexOf(obj),1)
+	this.lockBank()
 }
 canvasGrid.prototype.getObject = function(x,y) {
 	if (x==-1) {
@@ -65,12 +72,15 @@ canvasGrid.prototype.moveObject = function(ox,oy,nx,ny) {
 	}
 
 	if (nx==-1) {
+		console.log('trying to move')
 		this.banked[ny] = this.objects[ox][oy]
 		this.objects[ox][oy] = null
+		this.lockBank()
 		return
 	}
 	if (ox==-1) {
 		this.objects[nx][ny] = this.banked.splice(oy,1)[0]
+		this.lockBank()
 		return
 	}
 	this.objects[nx][ny] = this.objects[ox][oy]
