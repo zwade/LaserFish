@@ -1,4 +1,4 @@
-function emitter(x,y,dir,static) {
+function wall(x,y,dir,static) {
         this.loaded = null
         static = static | false
 	x = x||0
@@ -12,7 +12,7 @@ function emitter(x,y,dir,static) {
 	this.loaded = false
 	var canvas
         var self = this
-        fabric.loadSVGFromURL('emitter.svg',function(obj, opt) {
+        fabric.loadSVGFromURL('wall.svg',function(obj, opt) {
                 shape = fabric.util.groupSVGElements(obj, opt)
 		shape.id = genId()
 		shape.lockScalingX = shape.lockScalingY = true
@@ -32,7 +32,7 @@ function emitter(x,y,dir,static) {
 		
 	})
 }
-emitter.prototype.updateCoords = function() {
+wall.prototype.updateCoords = function() {
 	if (this.isBanked) {
 		this.nx = -1
 		this.ny = 1
@@ -41,7 +41,7 @@ emitter.prototype.updateCoords = function() {
 		this.ny = (this.fab.getTop()-GRIDH)/GRIDH
 	}
 }
-emitter.prototype.changeAngle = function(a) {
+wall.prototype.changeAngle = function(a) {
 	if (!a) {
 		this.fab.setAngle(this.fab.getAngle()+90)
 		while (this.fab.getAngle()>360) {
@@ -53,25 +53,25 @@ emitter.prototype.changeAngle = function(a) {
 		this.fab.setAngle(Math.round(a*90))
 	}
 }
-emitter.prototype.calculateLaser = function() {
+wall.prototype.calculateLaser = function() {
 	return
 }
-emitter.prototype.preMove = function() {
+wall.prototype.preMove = function() {
 	this.ox = this.nx
 	this.oy = this.ny
 }
-emitter.prototype.getFabric = function() {
+wall.prototype.getFabric = function() {
         return this.fab
 }
-emitter.prototype.getDir = function() {
+wall.prototype.getDir = function() {
 	return this.dir
 }
-emitter.prototype.setDir = function(dir) {
+wall.prototype.setDir = function(dir) {
 	this.dir = dir
 	this.fab.setAngle(dir*90)
 	can.renderAll()
 }
-emitter.prototype.addToCanvas = function() {
+wall.prototype.addToCanvas = function() {
 	if (this.loaded && !inCanvas(this.fab)) {
 		can.add(this.fab)
 	} else {

@@ -1,5 +1,6 @@
-function prism(x,y,dir) {
+function prism(x,y,dir,static) {
         this.loaded = null
+        static = static | false
 	x = x||0
 	y = y||0
 	dir = dir||1
@@ -16,7 +17,8 @@ function prism(x,y,dir) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
 		shape.id = genId()
 		shape.lockScalingX = shape.lockScalingY = true
-		shape.isMovable = true
+		shape.isMovable = static
+		shape.selectable = static
 		shape.hasBorders = shape.hasControls =  false
 		shape.setLeft(GRIDW+GRIDW*x)
 		shape.setTop(GRIDH+GRIDH*y)

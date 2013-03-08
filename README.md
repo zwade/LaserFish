@@ -12,3 +12,21 @@ Ellis - You got a lot to do
 	Cutscenes: For the storyline (talk to kyle)
 
 Mathew - Work on the book thingy (again, talk to kyle)
+
+--Update--
+
+Implemented:
+	-Emitter
+	-Receiver
+	-Mirror
+	-One way mirror
+	-Prism
+	-Wall
+
+Unimplemented:
+	-Lenses
+	-Storyline
+	-Level API
+
+Bugs:
+	-None known
