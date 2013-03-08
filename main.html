@@ -167,6 +167,8 @@ function lockXY(obj) {
 		console.log('banking')
 		if (!handler.getBankedObject(obj.parent)) {
 			handler.bankObject(obj.parent.ox,obj.parent.oy)
+		} else {
+			handler.lockBank()
 		}
 		return
 	}					
@@ -177,6 +179,8 @@ function lockXY(obj) {
 		console.log('banking')
 		if (!handler.getBankedObject(obj.parent)) {
 			handler.bankObject(obj.parent.ox,obj.parent.oy)
+		} else {
+			handler.lockBank()
 		}
 		return
 	}
