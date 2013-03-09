@@ -12,8 +12,8 @@ function wall(x,y,dir,static) {
 	this.loaded = false
 	var canvas
         var self = this
-        fabric.loadSVGFromURL('wall.svg',function(obj, opt) {
-                shape = fabric.util.groupSVGElements(obj, opt)
+        fabric.Image.fromURL('wall.svg',function(obj, opt) {
+		shape = obj
 		shape.id = genId()
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.hasBorders = shape.hasControls = false
@@ -26,7 +26,6 @@ function wall(x,y,dir,static) {
 		shape.setCoords()
 		shape.parent = self
 		self.fab = shape
-                console.log(shape)
         	self.loaded = true
 		self.addToCanvas()
 		

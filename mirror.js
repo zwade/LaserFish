@@ -15,7 +15,6 @@ function mirror(x,y,dir,static) {
 	var self = this
         fabric.loadSVGFromURL('mirror.svg',function(obj, opt) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
-		shape.id = genId()
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.isMovable = static
                 shape.selectable = static
@@ -76,7 +75,6 @@ mirror.prototype.calculateLaser = function(dir) {
 		rdir-=4
 	}
 	ret[0] = rdir
-	console.log(rdir)
 	return ret
 }
 mirror.prototype.preMove = function() {

@@ -33,7 +33,6 @@ canvasGrid.prototype.bankObject = function() {
 	this.lockBank()
 }
 canvasGrid.prototype.lockBank = function() {
-	console.log('iscalled')
 	for (i in this.banked) {
 		this.banked[i].fab.setLeft(GRIDW*WIDTH+GRIDW/2)
 		this.banked[i].fab.setTop(GRIDH*i+GRIDH)
@@ -75,7 +74,6 @@ canvasGrid.prototype.moveObject = function(ox,oy,nx,ny) {
 	}
 
 	if (nx==-1) {
-		console.log('trying to move')
 		this.banked[ny] = this.objects[ox][oy]
 		this.objects[ox][oy] = null
 		return

@@ -94,16 +94,10 @@ function laserPath(x,y,dir,color) {
 			ret[ret.length] = [x,y,color]
 			var tmp  = handler.getObject(x,y).calculateLaser(dir,color)
 			if (tmp && tmp.length==4) {								
-				console.log('prisming')
 				var a = (laserPath(tmp[1][0],tmp[1][1],tmp[1][2],tmp[1][3]))
-				console.log("a: ",ret.concat(a))
 			        var b = (laserPath(tmp[2][0],tmp[2][1],tmp[2][2],tmp[2][3]))
-				console.log("b1:",b)
-				console.log("b: ",ret.concat(a).concat(b))
 				var c = (laserPath(tmp[3][0],tmp[3][1],tmp[3][2],tmp[3][3]))
-				console.log("c: ",ret.concat(a).concat(b).concat(c))
 				var d = ret.concat(a).concat(b).concat(c)
-				console.log(d)
 				return d
 			} else if (tmp) {
 				dir = tmp[0]
@@ -135,9 +129,8 @@ function laserPath(x,y,dir,color) {
 	return ret
 }
 function inCanvas(obj) {
-	id = obj.id
 	for (i in can.getObjects()) {
-		if (can.getObjects()[i].id == id) {
+		if (can.getObjects()[i] == obj) {
 			return true
 		}
 	}
@@ -171,7 +164,6 @@ function lockXY(obj) {
 		left = (Math.round(obj.getLeft()/GRIDW)*GRIDW)
 	} else {
 		obj.parent.isBanked = true
-		console.log('banking')
 		if (!handler.getBankedObject(obj.parent)) {
 			handler.bankObject(obj.parent.ox,obj.parent.oy)
 		} else {
@@ -183,7 +175,6 @@ function lockXY(obj) {
 		top = (Math.round(obj.getTop()/GRIDH)*GRIDH)
 	} else {
 		obj.parent.isBanked = true
-		console.log('banking')
 		if (!handler.getBankedObject(obj.parent)) {
 			handler.bankObject(obj.parent.ox,obj.parent.oy)
 		} else {
@@ -235,7 +226,6 @@ can.observe('mouse:up',function(e){
 		}
 	}
 	if (env.emit && !env.emit.isBanked) {
-		console.log(env.emit)
 		drawLaser(laserPath(env.emit.nx,env.emit.ny,env.emit.dir))
 	}
 	
@@ -266,12 +256,8 @@ function drawTest() {
 	handler.setObject(1,7,h)
 }
 function clearCan() {
-	go = can.getObjects()
-	wat = go.length
-	for (i=0; i < wat; i++) {
-		can.remove(go[0])
-	}
-	handler = new canvasGrid(can, WIDTH, HEIGHT)
+	handler     = new canvasGrid(can, WIDTH, HEIGHT)
+	can.clear()
 	env.emit    = undefined
 	env.receive = []
 	env.active  = []
@@ -279,10 +265,17 @@ function clearCan() {
 }
 function drawLevelT() {
 	clearCan()
+	level = 0
+	tmp = levelSet[level]
+	for (i = 0; i < tmp.static.length; i++) {
+		tobj = new tmp.static[i].type(tmp.static[i].x,tmp.static[i].y,tmp.static[i].dir,true)
+		handler.setObject(tmp.static[i].x,tmp.static[i].y,tobj)
+		//env.active[env.active.length] = tobj
+	}
 	
 }
 function start() { 
-	drawLevel(1,drawTest)
+	drawLevel(1,drawLevelT)
 }
 window.onload = function() { start() }
 </script>

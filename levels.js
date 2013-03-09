@@ -2,13 +2,12 @@ levelSet = [
 {
 	name:"1.1",
 	available:[mirror,mirror],
-	static:[{
+	emit:{
 			x:1,
 			y:5,
-			dir:0,
-			type:emitter
-		},
-		{
+			dir:0
+	},	
+	static:[{
 			x:4,
 			y:5,
 			dir:0,
@@ -25,11 +24,13 @@ levelSet = [
 			y:7,
 			dir:2.5,
 			type:mirror
-		},
+		}
+	],
+	receive:[
 		{
 			x:10,
 			y:5,
-			dir:2,
-			type:receiver
-		}]
+			dir:2
+		}
+	]
 }]	

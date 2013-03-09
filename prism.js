@@ -59,7 +59,6 @@ prism.prototype.calculateLaser = function(dir,color) {
 		a+=4
 	}
 	if (a!=2 || ['white','#fff','#FFF','#ffffff','#FFFFFF','rgb(255,255,255)','RGB(255,255,255)'].indexOf(color)==-1 ) {
-		console.log(color)
 		return
 	}
 	dir1 = this.dir+1
@@ -74,7 +73,6 @@ prism.prototype.calculateLaser = function(dir,color) {
 	ret[2][3] = 'blue'
 	ret[3][2] = dir3
 	ret[3][3] = 'green'	
-	console.log(ret)
 	return ret
 }
 prism.prototype.preMove = function() {

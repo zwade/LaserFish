@@ -26,7 +26,6 @@ function emitter(x,y,dir,static) {
 		shape.setCoords()
 		shape.parent = self
 		self.fab = shape
-                console.log(shape)
         	self.loaded = true
 		self.addToCanvas()
 		

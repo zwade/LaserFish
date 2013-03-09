@@ -1,6 +1,5 @@
 function receiver(x,y,dir,static,color) {
 	static = static | false
-	console.log(static)
         this.loaded = null
 	this.needs = color
 	x = x||0
@@ -28,7 +27,6 @@ function receiver(x,y,dir,static,color) {
 		shape.setCoords()
 		shape.parent = self
 		self.fab = shape
-                console.log(shape)
         	self.loaded = true
 		self.addToCanvas()
 		

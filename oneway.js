@@ -60,7 +60,6 @@ oneway.prototype.calculateLaser = function(dir) {
 	while(a<0) {
 		a+=4
 	}
-	console.log("a: "+a)
 	if (a==0) {
 		rdir=dir
 	} 
@@ -89,7 +88,6 @@ oneway.prototype.calculateLaser = function(dir) {
 		rdir-=4
 	}
 	ret[0] = rdir
-	console.log(rdir)
 	return ret
 }
 oneway.prototype.preMove = function() {
