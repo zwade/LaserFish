@@ -8,19 +8,19 @@ levelSet = [
 			dir:0
 	},	
 	static:[{
-			x:4,
+			x:5,
 			y:5,
 			dir:0,
 			type:wall
 		},
 		{
-			x:3,
+			x:4,
 			y:7,
 			dir:1.5,
 			type:mirror
 		},
 		{
-			x:5,
+			x:6,
 			y:7,
 			dir:2.5,
 			type:mirror

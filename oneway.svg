@@ -4,8 +4,8 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="306" y1="-362.0303" x2="306" y2="-347.2803" gradientTransform="matrix(1 0 0 -1 -286 -335)">
-	<stop  offset="0.5" style="stop-color:#B5B5B5"/>
 	<stop  offset="0.5" style="stop-color:#141414"/>
+	<stop  offset="0.5" style="stop-color:#B5B5B5"/>
 </linearGradient>
 <path fill="url(#SVGID_1_)" stroke="#000000" stroke-miterlimit="10" d="M3.654,15.142c-2.362,0.59-2.166,9.122,0.065,10.17
 	C5.95,26.363,7,23.016,8.969,22.951c1.969-0.065,3.938,2.765,14.436,2.82c0.199,0.002-0.193,0.002,0,0

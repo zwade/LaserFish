@@ -87,7 +87,7 @@ function laserPath(x,y,dir,color) {
 		y--
 	}
 	iter = 0
-	while(x>=0 && y>=0 && x< WIDTH && y < HEIGHT) {
+	while(x>=0 && y>=0 && x< (WIDTH) && y < (HEIGHT)) {
 		iter++
 		if (iter>100) {break}
 		if (handler.getObject(x,y)) {
@@ -141,7 +141,12 @@ function drawLevel(level,cb) {
 	//})
 	clearCan()
 	can.backgroundColor = "#06f"
-	can.add(laser([GRIDW*WIDTH-GRIDW/2,0,GRIDW*WIDTH-GRIDW/2,GRIDH*HEIGHT],'black'))
+	randa1 = (new fabric.Rect({left:GRIDW*WIDTH+GRIDW/2+10,height:GRIDH*HEIGHT,top:GRIDH*HEIGHT/2,width:GRIDW*2.5,fill:'#06f'}))
+	randa2 = (new fabric.Line([GRIDW*WIDTH-GRIDW/2,0,GRIDW*WIDTH-GRIDW/2,GRIDH*HEIGHT],{strokeWidth:10,fill:'black',}))
+	randa1.selectable = false
+	randa2.selectable = false
+	can.add(randa1)
+	can.add(randa2)
 	can.renderAll()
 	cb()
 }	

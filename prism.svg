@@ -1,7 +1,21 @@
-<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
- <g>
-  <title>Layer 1</title>
-  <path id="svg_2" d="m3,5l0,30l30,-15l-30,-15z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="3" stroke="#000000" fill="#00BBFF"/>
- </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5527" y1="18.9629" x2="35.6824" y2="23.2176">
+	<stop  offset="0.0727" style="stop-color:#FFFFFF;stop-opacity:0.75"/>
+	<stop  offset="0.1818" style="stop-color:#FF3317;stop-opacity:0.75"/>
+	<stop  offset="0.2364" style="stop-color:#FFBB45;stop-opacity:0.75"/>
+	<stop  offset="0.303" style="stop-color:#FFFF2E;stop-opacity:0.75"/>
+	<stop  offset="0.3697" style="stop-color:#17FF3A;stop-opacity:0.75"/>
+	<stop  offset="0.4364" style="stop-color:#007ED0;stop-opacity:0.75"/>
+	<stop  offset="0.503" style="stop-color:#E700FF;stop-opacity:0.75"/>
+	<stop  offset="0.5818" style="stop-color:#FFFFFF;stop-opacity:0.75"/>
+</linearGradient>
+<polygon fill="url(#SVGID_1_)" stroke="#000000" stroke-miterlimit="10" points="13.75,6.5 13.75,32.2 36.25,20 "/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="29.05" y1="18.95" x2="29.65" y2="18.95"/>
+<path fill="none" stroke="#FF2400" stroke-miterlimit="10" d="M26.8,20.75c0,0,0.55,1,1.935,1.166
+	c2.685,0.322,3.682,0.101,3.682,0.101"/>
+<polygon fill="none" stroke="#000000" stroke-width="0.75" stroke-miterlimit="10" points="13.75,18.55 5.8,12.25 5.8,25.9 "/>
 </svg>
