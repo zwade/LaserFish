@@ -1,3 +1,35 @@
 levelSet = [
-play:[
-	
+{
+	name:"1.1",
+	available:[mirror,mirror],
+	static:[{
+			x:1,
+			y:5,
+			dir:0,
+			type:emitter
+		},
+		{
+			x:4,
+			y:5,
+			dir:0,
+			type:wall
+		},
+		{
+			x:3,
+			y:7,
+			dir:1.5,
+			type:mirror
+		},
+		{
+			x:5,
+			y:7,
+			dir:2.5,
+			type:mirror
+		},
+		{
+			x:10,
+			y:5,
+			dir:2,
+			type:receiver
+		}]
+}]	
