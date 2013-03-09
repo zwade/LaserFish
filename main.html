@@ -1,19 +1,35 @@
 <html>
 <body>
-	<canvas id="main" width = "500" height = "400"> </canvas>
+	<div id="wrapper">
+	<img src="laserbanner.jpg" style="margin:auto auto"></img> 
+	</div>
+	<canvas style="margin:auto auto" id="main" width = "500" height = "400"> </canvas>
 </body>
 </html>
+<style>
+	#wrapper {
+		width:100%;
+	}
+	.canvas-container {
+		margin: auto auto;
+	}
+</style>
 
 <script src = fabric.js></script>
 <script src = handler.js></script>
 <script src = emitter.js></script>
 <script src = wall.js></script>
 <script src = receiver.js></script>
+<script src = nub.js></script>
 <script src = prism.js></script>
 <script src = mirror.js></script>
+<script src = diag.js></script>
+<script src = odiag.js></script>
 <script src = oneway.js></script>
 
 <script src = levels.js></script>
+<script src = showImage.js></script>
+<script src = showCapt.js></script>
 <script>
 WIDTH = 21
 GRIDW = 60
@@ -68,6 +84,7 @@ function clearLasers() {
 	}
 	activeLaser =[]
 }
+
 function laserPath(x,y,dir,color) {
 	if (!arguments[3]) { color = 'white' }
 	var ret = [[x,y,color]]
@@ -125,6 +142,7 @@ function laserPath(x,y,dir,color) {
 		}
 
 	}
+
 	ret[ret.length] = [x,y,color]
 	return ret
 }
@@ -140,6 +158,7 @@ function drawLevel(level,cb) {
 	//can.setBackgroundImage('background.jpg',function() {
 	//}):
 	clearCan()
+	can.setHeight(GRIDH*HEIGHT)
 	can.backgroundColor = "#06f"
 	randa1 = (new fabric.Rect({left:GRIDW*WIDTH+GRIDW/2+10,height:GRIDH*HEIGHT,top:GRIDH*HEIGHT/2,width:GRIDW*2.5,fill:'#06f'}))
 	randa2 = (new fabric.Line([GRIDW*WIDTH-GRIDW/2,0,GRIDW*WIDTH-GRIDW/2,GRIDH*HEIGHT],{strokeWidth:10,fill:'black',}))
@@ -148,7 +167,7 @@ function drawLevel(level,cb) {
 	can.add(randa1)
 	can.add(randa2)
 	can.renderAll()
-	cb()
+	cb(level)
 }	
 function theta2(obj) {
 	a = Math.round(obj.getAngle()/(45))
@@ -218,7 +237,11 @@ can.observe('mouse:down', function(e) {
 	clearLasers()
 })
 can.observe('mouse:up',function(e){
-	
+	if (env.simg) {
+		env.level++
+		drawLevel(env.level, drawLevelT)	
+		return
+	}
 	if (e.target && e.target.isMovable) {
 		tmp = e.target.parent
 		lockXY(e.target)
@@ -231,12 +254,30 @@ can.observe('mouse:up',function(e){
 			1==1
 		}
 	}
+	lazer()
+})
+function lazer() {
 	if (env.emit && !env.emit.isBanked) {
+		for (i = 0; i < env.receive.length; i++) {
+			env.receive[i].isWinning = false
+		}
 		drawLaser(laserPath(env.emit.nx,env.emit.ny,env.emit.dir))
+		won = true
+		for (i = 0; i < env.receive.length; i++) {
+			if (!env.receive[i].isWinning) {
+				won = false
+			}
+		}
+		if (won) {
+			console.log('really won')
+			env.simg = true
+			new showImage('win.png')	
+			return
+		}
 	}
 	
 	can.renderAll()
-})
+}
 
 function renderLevel(l) {
 	level = levelSet[l]
@@ -270,7 +311,19 @@ function clearCan() {
 }
 function drawLevelT(level) {
 	level = level | 0
+	if (level>=levelSet.length) {
+		alert('Game Won')
+		return
+	}
 	tmp = levelSet[level]
+	console.log(level)
+	if (tmp.isImage) {
+		console.log('loading image')
+		env.simg = true
+		new showImage(tmp.uri,tmp.text)
+		return
+	}
+	env.simg = false
 	for (i = 0; i < tmp.static.length; i++) {
 		tobj = new tmp.static[i].type(tmp.static[i].x,tmp.static[i].y,tmp.static[i].dir,false)
 		handler.setObject(tmp.static[i].x,tmp.static[i].y,tobj)
@@ -288,13 +341,20 @@ function drawLevelT(level) {
 		env.emit = tobj
 	}
 	for (i = 0; i < tmp.receive.length; i++) {
-		tobj = new receiver(tmp.receive[i].x,tmp.receive[i].y,tmp.receive[i].dir,false,tmp.receive[i].color)
+		if (tmp.receive[i].isNub) {
+			tobj = new nub(tmp.receive[i].x,tmp.receive[i].y,tmp.receive.dir,false)
+		} else {
+			tobj = new receiver(tmp.receive[i].x,tmp.receive[i].y,tmp.receive[i].dir,false,tmp.receive[i].color)
+		}
 		handler.setObject(tmp.receive[i].x,tmp.receive[i].y,tobj)
 		env.receive[env.receive.length] = tobj
 	}
+	lazer()
 }
+
 function start() { 
-	drawLevel(1,drawLevelT)
+	env.level = 0
+	drawLevel(0,drawLevelT)
 }
 window.onload = function() { start() }
 </script>

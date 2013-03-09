@@ -3,20 +3,20 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-<radialGradient id="SVGID_1_" cx="-1121.0947" cy="-729.6768" r="13.6254" gradientTransform="matrix(-1 0 0 -1 -1101.0947 -710)" gradientUnits="userSpaceOnUse">
+<radialGradient id="SVGID_1_" cx="-1406.0947" cy="1145.6768" r="13.6256" gradientTransform="matrix(-1 0 0 1 -1386.0947 -1126)" gradientUnits="userSpaceOnUse">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0" style="stop-color:#FAF2EE"/>
-	<stop  offset="1" style="stop-color:#000000"/>
+	<stop  offset="1" style="stop-color:#D01200"/>
 </radialGradient>
 <ellipse fill="url(#SVGID_1_)" cx="20" cy="19.677" rx="13.848" ry="13.399"/>
-<path fill="#FFFFFF" d="M30.533,10.972c-2.931,1.391-18.351,8.703-18.351,8.703s16.888,7.758,18.351,8.708
-	C31.605,28.454,35.312,15.289,30.533,10.972z"/>
+<path fill="#FFFFFF" d="M30.533,10.972c-2.932,1.391-18.351,8.703-18.351,8.703s16.888,7.759,18.351,8.708
+	C31.605,28.454,35.313,15.289,30.533,10.972z"/>
 <ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="20" cy="19.677" rx="13.848" ry="13.399"/>
-<path stroke="#180C17" stroke-miterlimit="10" d="M29.158,20.171c0,2.581,3.075,7.204,3.618,4.672
-	c1.007-4.687,1.069-5.167,0.378-9.345C32.733,12.945,29.158,17.591,29.158,20.171z"/>
+<path stroke="#180C17" stroke-miterlimit="10" d="M29.158,20.171c0,2.581,3.074,7.204,3.617,4.672
+	c1.008-4.687,1.07-5.167,0.379-9.345C32.732,12.945,29.158,17.591,29.158,20.171z"/>
 <polyline fill="none" stroke="#180C17" stroke-miterlimit="10" points="30.523,10.972 12.671,19.675 30.523,28.383 "/>
 <g id="Layer_2" display="none">
-	<path display="inline" fill="#FFFFFF" d="M27.063,14.422c-1.877,0.891-11.758,5.577-11.758,5.577s10.822,4.972,11.758,5.58
+	<path display="inline" fill="#FFFFFF" d="M27.063,14.422c-1.877,0.891-11.757,5.577-11.757,5.577s10.822,4.972,11.757,5.58
 		C27.75,25.625,30.125,17.188,27.063,14.422z"/>
 </g>
 </svg>

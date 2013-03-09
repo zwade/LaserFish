@@ -1,4 +1,4 @@
-function receiver(x,y,dir,static,color) {
+function nub(x,y,dir,static,color) {
 	static = static | false
         this.loaded = null
 	this.needs = color
@@ -13,23 +13,14 @@ function receiver(x,y,dir,static,color) {
 	this.loaded = false
 	var canvas
         var self = this
-	var uri = 'receiver.svg'
+	var uri = 'nub.svg'
 	console.log(color)
 	/***switch(color) {
 		case "white": uri = uri
-		case "blue" : uri = 'receiver_blue.svg'
-		case "red"  : uri = 'receiver_red.svg'
-		case "green": uri = 'receiver_green.svg'
+		case "blue" : uri = 'nub_blue.svg'
+		case "red"  : uri = 'nub_red.svg'
+		case "green": uri = 'nub_green.svg'
 	}**/
-	if (color == 'white') {
-		uri = 'receiver.svg'
-	} else if (color == 'blue') {
-		uri = 'receiver_blue.svg'
-	} else if (color == 'red') {
-		uri = 'receiver_red.svg'
-	} else if (color == 'green') {
-		uri = 'receiver_green.svg'
-	}
 	console.log(uri)
         fabric.loadSVGFromURL(uri,function(obj, opt) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
@@ -52,7 +43,7 @@ function receiver(x,y,dir,static,color) {
 		
 	})
 }
-receiver.prototype.updateCoords = function() {
+nub.prototype.updateCoords = function() {
 	if (this.isBanked) {
 		this.nx = -1
 		this.ny = 1
@@ -61,7 +52,7 @@ receiver.prototype.updateCoords = function() {
 		this.ny = (this.fab.getTop()-GRIDH)/GRIDH
 	}
 }
-receiver.prototype.changeAngle = function(a) {
+nub.prototype.changeAngle = function(a) {
 	if (!a) {
 		this.fab.setAngle(this.fab.getAngle()+90)
 		while (this.fab.getAngle()>360) {
@@ -73,32 +64,26 @@ receiver.prototype.changeAngle = function(a) {
 		this.fab.setAngle(Math.round(a*90))
 	}
 }
-receiver.prototype.calculateLaser = function(dir,color) {
-	a = this.dir-dir
-	while (a<0) {a+=4}
-	if (arguments[1] && color==this.needs && a==2) {
-		this.isWinning = true
-		console.log('Game Won')
-	}
-	
-	return
+nub.prototype.calculateLaser = function(dir,color) {
+	this.isWinning = true
+	return [dir,this.nx,this.ny]
 }
-receiver.prototype.preMove = function() {
+nub.prototype.preMove = function() {
 	this.ox = this.nx
 	this.oy = this.ny
 }
-receiver.prototype.getFabric = function() {
+nub.prototype.getFabric = function() {
         return this.fab
 }
-receiver.prototype.getDir = function() {
+nub.prototype.getDir = function() {
 	return this.dir
 }
-receiver.prototype.setDir = function(dir) {
+nub.prototype.setDir = function(dir) {
 	this.dir = dir
 	this.fab.setAngle(dir*90)
 	can.renderAll()
 }
-receiver.prototype.addToCanvas = function() {
+nub.prototype.addToCanvas = function() {
 	if (this.loaded && !inCanvas(this.fab)) {
 		can.add(this.fab)
 	} else {

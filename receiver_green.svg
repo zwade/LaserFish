@@ -6,7 +6,7 @@
 <radialGradient id="SVGID_1_" cx="-1121.0947" cy="-729.6768" r="13.6254" gradientTransform="matrix(-1 0 0 -1 -1101.0947 -710)" gradientUnits="userSpaceOnUse">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0" style="stop-color:#FAF2EE"/>
-	<stop  offset="1" style="stop-color:#000000"/>
+	<stop  offset="1" style="stop-color:#005C2F"/>
 </radialGradient>
 <ellipse fill="url(#SVGID_1_)" cx="20" cy="19.677" rx="13.848" ry="13.399"/>
 <path fill="#FFFFFF" d="M30.533,10.972c-2.931,1.391-18.351,8.703-18.351,8.703s16.888,7.758,18.351,8.708
