@@ -139,7 +139,8 @@ function inCanvas(obj) {
 function drawLevel(level,cb) {
 	//can.setBackgroundImage('background.jpg',function() {
 	//})
-	handler = new canvasGrid(can,WIDTH,HEIGHT)
+	clearCan()
+	can.backgroundColor = "#06f"
 	can.add(laser([GRIDW*WIDTH-GRIDW/2,0,GRIDW*WIDTH-GRIDW/2,GRIDH*HEIGHT],'black'))
 	can.renderAll()
 	cb()
@@ -237,7 +238,6 @@ function renderLevel(l) {
 
 }
 function drawTest() {
-	can.backgroundColor = "#06f"
 	why = new mirror(1,2,1,true)
 	env.emit = []
 	env.emit = new emitter(1,1,1,true)
@@ -263,16 +263,25 @@ function clearCan() {
 	env.active  = []
 	env.static  = []
 }
-function drawLevelT() {
-	clearCan()
-	level = 0
+function drawLevelT(level) {
+	level = level | 0
 	tmp = levelSet[level]
 	for (i = 0; i < tmp.static.length; i++) {
-		tobj = new tmp.static[i].type(tmp.static[i].x,tmp.static[i].y,tmp.static[i].dir,true)
+		tobj = new tmp.static[i].type(tmp.static[i].x,tmp.static[i].y,tmp.static[i].dir,false)
 		handler.setObject(tmp.static[i].x,tmp.static[i].y,tobj)
-		//env.active[env.active.length] = tobj
+		env.static[env.static.length] = tobj
 	}
-	
+	for (i = 0; i < tmp.active.length; i++) {
+		loc = tmp.active[i]
+		tobj = new loc(0,0,0,true)
+		handler.bankObject(tobj)
+		env.active[env.active.length] = tobj
+	}
+	if (true) {
+		tobj = new emitter(tmp.emit.x,tmp.emit.y,tmp.emit.dir,false)
+		handler.setObject(tmp.emit.x,tmp.emit.y,tobj)
+		env.emit = tobj
+	}
 }
 function start() { 
 	drawLevel(1,drawLevelT)

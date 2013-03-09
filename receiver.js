@@ -4,7 +4,7 @@ function receiver(x,y,dir,static,color) {
 	this.needs = color
 	x = x||0
 	y = y||0
-	dir = dir||1
+	dir = dir||0
 	this.nx = x
 	this.ny = y
 	this.ox = x

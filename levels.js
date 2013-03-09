@@ -1,7 +1,7 @@
 levelSet = [
 {
 	name:"1.1",
-	available:[mirror,mirror],
+	active:[mirror,mirror],
 	emit:{
 			x:1,
 			y:5,

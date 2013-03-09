@@ -18,9 +18,11 @@ canvasGrid.prototype.setObject = function(x,y,obj) {
 canvasGrid.prototype.bankObject = function() {
 	if (arguments.length==1) {
 		obj = arguments[0]
+		if (!obj.isBanked) {obj.isBanked = true}
 		this.banked.push(obj)
 		this.banked[this.banked.indexOf(obj)].ny = this.banked.indexOf(obj)
 		this.banked[this.banked.indexOf(obj)].nx = -1
+		return
 	} else if (arguments.length==2) {
 		var x = arguments[0]
 		var y = arguments[1]

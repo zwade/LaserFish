@@ -3,7 +3,7 @@ function oneway(x,y,dir,static) {
         static = static | false
 	x = x||0
 	y = y||0
-	dir = dir||1
+	dir = dir||0
 	this.nx = x
 	this.ny = y
 	this.ox = x
@@ -30,6 +30,12 @@ function oneway(x,y,dir,static) {
         	self.loaded = true
 		self.addToCanvas()
 		
+                try {
+                        handler.lockBank()
+                } catch (e) {
+                        console.log(e)
+                }
+
 	})
 }
 oneway.prototype.updateCoords = function() {
