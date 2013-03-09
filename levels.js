@@ -30,7 +30,8 @@ levelSet = [
 		{
 			x:10,
 			y:5,
-			dir:2
+			dir:2,
+			color:"white"
 		}
 	]
 }]	

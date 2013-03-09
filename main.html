@@ -282,6 +282,11 @@ function drawLevelT(level) {
 		handler.setObject(tmp.emit.x,tmp.emit.y,tobj)
 		env.emit = tobj
 	}
+	for (i = 0; i < tmp.receive.length; i++) {
+		tobj = new receiver(tmp.receive[i].x,tmp.receive[i].y,tmp.receive[i].dir,false,tmp.receive[i].color)
+		handler.setObject(tmp.receive[i].x,tmp.receive[i].y,tobj)
+		env.receive[env.receive.length] = tobj
+	}
 }
 function start() { 
 	drawLevel(1,drawLevelT)
