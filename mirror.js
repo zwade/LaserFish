@@ -15,6 +15,8 @@ function mirror(x,y,dir,static) {
 	var self = this
         fabric.loadSVGFromURL('mirror.svg',function(obj, opt) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
+		shape.scaleX = GRIDW/40
+		shape.scaleY = GRIDH/40
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.isMovable = static
                 shape.selectable = static

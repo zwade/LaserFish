@@ -15,6 +15,8 @@ function wall(x,y,dir,static) {
         fabric.Image.fromURL('wall.svg',function(obj, opt) {
 		shape = obj
 		shape.id = genId()
+                shape.scaleX = GRIDW/40
+                shape.scaleY = GRIDH/40
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.hasBorders = shape.hasControls = false
 		shape.isMovable = static

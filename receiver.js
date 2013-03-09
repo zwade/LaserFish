@@ -16,6 +16,8 @@ function receiver(x,y,dir,static,color) {
         fabric.loadSVGFromURL('receiver.svg',function(obj, opt) {
                 shape = fabric.util.groupSVGElements(obj, opt)
 		shape.id = genId()
+                shape.scaleX = GRIDW/40
+                shape.scaleY = GRIDH/40
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.hasBorders = shape.hasControls = false
 		shape.isMovable = static

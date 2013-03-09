@@ -16,6 +16,8 @@ function prism(x,y,dir,static) {
         fabric.loadSVGFromURL('prism.svg',function(obj, opt) {
                 var shape = fabric.util.groupSVGElements(obj, opt)
 		shape.id = genId()
+                shape.scaleX = GRIDW/40
+                shape.scaleY = GRIDH/40
 		shape.lockScalingX = shape.lockScalingY = true
 		shape.isMovable = static
 		shape.selectable = static

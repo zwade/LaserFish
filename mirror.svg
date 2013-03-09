@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-<radialGradient id="SVGID_1_" cx="20" cy="19.6553" r="14.2412" gradientTransform="matrix(-1 0 0 -1 40 39.3105)" gradientUnits="userSpaceOnUse">
+<radialGradient id="SVGID_1_" cx="20" cy="19.6553" r="14.2412" gradientTransform="matrix(-1.346898e-10 1 -1 -1.346898e-10 39.6553 -0.3447)" gradientUnits="userSpaceOnUse">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.0243" style="stop-color:#F2F2F2"/>
 	<stop  offset="0.1378" style="stop-color:#BABABA"/>
@@ -15,11 +15,11 @@
 	<stop  offset="0.8632" style="stop-color:#040404"/>
 	<stop  offset="1" style="stop-color:#000000"/>
 </radialGradient>
-<path fill="#C7C8CA" stroke="url(#SVGID_1_)" stroke-miterlimit="10" d="M36.346,24.169c2.361-0.591,2.166-9.121-0.065-10.171
-	s-3.281,2.297-5.249,2.362c-1.969,0.065-3.938-2.765-14.437-2.821c-0.199-0.001,0.194-0.001,0,0
-	c-1.132,0.007,1.484-1.331,0.521-1.255c-1.111,0.088-6.364,1.6-7.269,1.763c-6.412,1.159-7.885,3.984-7.885,5.264
-	c0,1.368,0.124,4.248,8.123,5.594c0.801,0.135,6.743,2.025,7.694,2.123c0.583,0.061-1.894-1.459-1.251-1.415
-	c0.416,0.028-0.442-0.022,0,0c9.64,0.473,12.73-3.28,14.305-3.28S33.984,24.76,36.346,24.169z"/>
-<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="6.816" cy="21.569" rx="0.197" ry="0.222"/>
-<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="6.816" cy="17.569" rx="0.197" ry="0.222"/>
+<path fill="#C7C8CA" stroke="url(#SVGID_1_)" stroke-miterlimit="10" d="M24.514,3.31c-0.591-2.361-9.121-2.166-10.171,0.065
+	s2.297,3.281,2.362,5.249c0.065,1.969-2.765,3.938-2.821,14.437c-0.001,0.199-0.001-0.194,0,0c0.007,1.132-1.331-1.484-1.255-0.521
+	c0.088,1.111,1.6,6.364,1.763,7.269c1.159,6.412,3.984,7.885,5.264,7.885c1.368,0,4.248-0.124,5.594-8.123
+	c0.135-0.801,2.025-6.743,2.123-7.694c0.061-0.583-1.459,1.894-1.415,1.251c0.028-0.416-0.022,0.442,0,0
+	c0.473-9.64-3.28-12.73-3.28-14.305S25.104,5.671,24.514,3.31z"/>
+<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="21.914" cy="32.839" rx="0.222" ry="0.197"/>
+<ellipse fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="17.914" cy="32.839" rx="0.222" ry="0.197"/>
 </svg>
