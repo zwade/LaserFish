@@ -253,7 +253,8 @@ can.observe('mouse:up',function(e){
 		} else {
 			1==1
 		}
-	}
+	console.log(e);
+
 	lazer()
 })
 function lazer() {
@@ -312,7 +313,7 @@ function clearCan() {
 function drawLevelT(level) {
 	level = level | 0
 	if (level>=levelSet.length) {
-		alert('Game Won')
+		alert('Congratulations on Beating the Game!')
 		return
 	}
 	tmp = levelSet[level]
@@ -353,6 +354,7 @@ function drawLevelT(level) {
 }
 
 function start() { 
+	alert('wat');
 	env.level = 0
 	drawLevel(0,drawLevelT)
 }
